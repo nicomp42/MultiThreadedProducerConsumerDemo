@@ -14,6 +14,9 @@ namespace ProducerConsumerDemo
 {
     public partial class Form1 : Form
     {
+        private Producer producer;
+        private Consumer consumer;
+
         public Form1()
         {
             InitializeComponent();
@@ -28,11 +31,22 @@ namespace ProducerConsumerDemo
         /// </summary>
         private void StartDemo()
         {
-            ConcurrentBag<IEnumerable<String>> widgets = new ConcurrentBag<IEnumerable<string>>();
-            Producer producer = new Producer(widgets);
-            Consumer consumer = new Consumer("001", widgets);
+            SynchronizedCollection<String> widgets = new SynchronizedCollection<String>();
+            producer = new Producer(widgets, txtProducer);
+            consumer = new Consumer("001", widgets, txtConsumer);
             producer.Start();
             consumer.Start();
         }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            try {producer.Abort(); } catch (Exception ex) { };
+            try {consumer.Abort();  } catch (Exception ex) { };
+}
     }
 }

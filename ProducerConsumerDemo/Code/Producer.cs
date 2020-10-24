@@ -5,16 +5,19 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace ProducerConsumerDemo.Code
 {
     class Producer : BaseThread
     {
         // https://docs.microsoft.com/en-us/dotnet/standard/collections/thread-safe/
-        ConcurrentBag<IEnumerable<String>> bagOfStuff;
-        public Producer(ConcurrentBag<IEnumerable<String>> bagOfStuff) : base()
+        SynchronizedCollection<String> bagOfStuff;
+        TextBox txtProducer;
+        public Producer(SynchronizedCollection<String> bagOfStuff, TextBox txtProducer) : base()
         {
             this.bagOfStuff = bagOfStuff;
+            this.txtProducer = txtProducer;
         }
 
         public override void RunThread()
@@ -22,12 +25,17 @@ namespace ProducerConsumerDemo.Code
             Random random = new Random(42);
             while(true)
             {
-                Thread.Sleep(20);
+                Thread.Sleep(random.Next(100,5000));
                 int r = random.Next();
                 String tmp = Convert.ToString(r);
-                IEnumerable<String> rString = new[] { tmp };
-                Console.WriteLine("Producer: adding " + tmp + " : " + rString.ElementAt<String>(0));
-                bagOfStuff.Add(rString);
+                Console.WriteLine("Producer: adding " + tmp );
+                bagOfStuff.Add(tmp);
+                if (txtProducer != null)
+                {
+                    txtProducer.Invoke(new MethodInvoker(delegate { txtProducer.Text = tmp + Environment.NewLine + txtProducer.Text; }));
+                    //txtProducer.Text = myWidget.ElementAt<String>(0) + Environment.NewLine + txtProducer.Text;
+                }
+
             }
         }
     }
