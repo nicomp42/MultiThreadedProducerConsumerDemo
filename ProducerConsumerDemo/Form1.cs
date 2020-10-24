@@ -29,6 +29,7 @@ namespace ProducerConsumerDemo
         private void button1_Click(object sender, EventArgs e)
         {
             StartDemo();
+            lblStatus.Visible = true;
         }
         /// <summary>
         /// Demonstrate Producer/Consumer design pattern

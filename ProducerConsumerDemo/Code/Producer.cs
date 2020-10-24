@@ -32,7 +32,7 @@ namespace ProducerConsumerDemo.Code
             Random random = new Random(42);
             while(true)
             {
-                Thread.Sleep(random.Next(100,5000));
+                Thread.Sleep(random.Next(10,1000));
                 int r = random.Next();
                 String tmp = Convert.ToString(r);
                 Console.WriteLine("Producer: adding " + tmp );

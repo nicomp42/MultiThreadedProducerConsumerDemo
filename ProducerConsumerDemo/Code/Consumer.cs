@@ -31,7 +31,7 @@ namespace ProducerConsumerDemo.Code
         {
             while (true)
             {
-                Thread.Sleep(50);
+                Thread.Sleep(500);  // Just to make it look real
                 if (widgets.Count > 0)
                 {
                     // There's a widget in the collection
