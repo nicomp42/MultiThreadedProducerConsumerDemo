@@ -1,4 +1,8 @@
-﻿using System;
+﻿/*
+ * Bill Nicholson
+ * nicholdw@ucmail.uc.edu
+ */
+using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +13,9 @@ using System.Windows.Forms;
 
 namespace ProducerConsumerDemo.Code
 {
+    /// <summary>
+    /// Adds items to the thread-safe data structure
+    /// </summary>
     class Producer : BaseThread
     {
         // https://docs.microsoft.com/en-us/dotnet/standard/collections/thread-safe/

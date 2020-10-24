@@ -1,14 +1,19 @@
-﻿using System;
-using System.Collections.Concurrent;
+﻿/*
+ * Bill Nicholson
+ * nicholdw@ucmail.uc.edu
+ */ 
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
+
 using System.Windows.Forms;
 
 namespace ProducerConsumerDemo.Code
 {
+    /// <summary>
+    /// Consumes items placed in a thread-safe data structure.
+    /// </summary>
     class Consumer : BaseThread
     {
         // https://docs.microsoft.com/en-us/dotnet/standard/collections/thread-safe/

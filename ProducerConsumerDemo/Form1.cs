@@ -1,4 +1,8 @@
-﻿using ProducerConsumerDemo.Code;
+﻿/*
+ * Bill Nicholson
+ * nicholdw@ucmail.uc.edu
+ */
+using ProducerConsumerDemo.Code;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;

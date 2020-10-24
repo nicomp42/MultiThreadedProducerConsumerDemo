@@ -1,13 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿/*
+ * Bill Nicholson
+ * nicholdw@ucmail.uc.edu
+ */
 using System.Threading;
-using System.Threading.Tasks;
 
 namespace ProducerConsumerDemo.Code
 {
     /// <summary>
+    /// Adapted from 
     /// https://docs.microsoft.com/en-us/dotnet/standard/collections/thread-safe/
     /// </summary>
     abstract class BaseThread
