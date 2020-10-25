@@ -42,14 +42,14 @@
             // 
             // btnGo
             // 
-            this.btnGo.Location = new System.Drawing.Point(953, 511);
+            this.btnGo.Location = new System.Drawing.Point(954, 553);
             this.btnGo.Margin = new System.Windows.Forms.Padding(4);
             this.btnGo.Name = "btnGo";
             this.btnGo.Size = new System.Drawing.Size(100, 28);
             this.btnGo.TabIndex = 0;
             this.btnGo.Text = "Go";
             this.btnGo.UseVisualStyleBackColor = true;
-            this.btnGo.Click += new System.EventHandler(this.button1_Click);
+            this.btnGo.Click += new System.EventHandler(this.btnGo_Click);
             // 
             // label1
             // 
@@ -74,9 +74,11 @@
             // lblStatus
             // 
             this.lblStatus.AutoSize = true;
+            this.lblStatus.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblStatus.ForeColor = System.Drawing.Color.Blue;
             this.lblStatus.Location = new System.Drawing.Point(114, 361);
             this.lblStatus.Name = "lblStatus";
-            this.lblStatus.Size = new System.Drawing.Size(250, 17);
+            this.lblStatus.Size = new System.Drawing.Size(365, 26);
             this.lblStatus.TabIndex = 5;
             this.lblStatus.Text = "Producer/Consumer threads running...";
             this.lblStatus.Visible = false;
@@ -108,7 +110,7 @@
             this.txtResults.Multiline = true;
             this.txtResults.Name = "txtResults";
             this.txtResults.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.txtResults.Size = new System.Drawing.Size(787, 92);
+            this.txtResults.Size = new System.Drawing.Size(787, 150);
             this.txtResults.TabIndex = 9;
             this.txtResults.Visible = false;
             // 
@@ -143,7 +145,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1067, 554);
+            this.ClientSize = new System.Drawing.Size(1067, 595);
             this.Controls.Add(this.lbConsumer02);
             this.Controls.Add(this.lbConsumer01);
             this.Controls.Add(this.lbProducer);
@@ -158,6 +160,7 @@
             this.Name = "frmProducerConsumerDemo";
             this.Text = "Form1";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
+            this.Load += new System.EventHandler(this.frmProducerConsumerDemo_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

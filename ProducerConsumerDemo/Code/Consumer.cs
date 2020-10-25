@@ -59,10 +59,8 @@ namespace ProducerConsumerDemo.Code
             while (true)
             {
                 Thread.Sleep(500);  // Just to make it seem real
-                lock (_myLock)  // Keep the single-threaded code as small as possible.
-                {
-                    if (widgets.Count > 0)
-                    {
+                lock (_myLock) {    // Keep the single-threaded code as small as possible.
+                    if (widgets.Count > 0) {
                         // There's a widget in the collection
                         myWidget = widgets.ElementAt<String>(0); // Could fail here
                         widgets.Remove(widgets.ElementAt<String>(0));   // Could fail here
@@ -76,10 +74,8 @@ namespace ProducerConsumerDemo.Code
                         myWidget = null;
                     }    
                 }
-                
             }
         }
-
 #endif
     }
 }

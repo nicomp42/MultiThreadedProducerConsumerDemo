@@ -4,15 +4,8 @@
  */
 using ProducerConsumerDemo.Code;
 using System;
-using System.Collections.Concurrent;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Diagnostics;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace ProducerConsumerDemo
@@ -29,11 +22,12 @@ namespace ProducerConsumerDemo
             InitializeComponent();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void btnGo_Click(object sender, EventArgs e)
         {
             StartDemo();
             lblStatus.Visible = true;
             btnStop.Visible = true;
+            btnGo.Visible = false;
         }
         /// <summary>
         /// Demonstrate Producer/Consumer design pattern
@@ -71,6 +65,7 @@ namespace ProducerConsumerDemo
             txtResults.Visible = true;
             killThreads();
             ComputeResults();
+            btnGo.Visible = true;
         }
         private void ComputeResults()
         {
@@ -83,10 +78,28 @@ namespace ProducerConsumerDemo
             txtResults.Text += Environment.NewLine + consumedItems01 + " widgets were consumed by Consumer thread 01.";
             txtResults.Text += Environment.NewLine + consumedItems02 + " widgets were consumed by Consumer thread 02.";
             if (producedItems == (consumedItems01 + consumedItems02)) {
-                txtResults.Text += Environment.NewLine + "All items accounted for.";
+                txtResults.Text += Environment.NewLine + "All widgets accounted for in the Consumers.";
             } else {
                 int difference = producedItems - (consumedItems01 + consumedItems02);
-                txtResults.Text += Environment.NewLine + "ERROR: producer/consumer mismatch: " + difference + " widgets were not processed!";
+                txtResults.Text += Environment.NewLine + "ERROR: producer/consumer mismatch: " + difference + " widgets not processed!";
+            }
+            CheckWidgets(txtResults);
+        }
+        private void CheckWidgets(TextBox txtResults)
+        {
+            // Look in the Consumers for all the produced items
+            foreach (String item in lbProducer.Items) {
+                if (!lbConsumer01.Items.Contains(item) && !lbConsumer02.Items.Contains(item))
+                {
+                    txtResults.Text += Environment.NewLine + item + " NOT found in Consumers";
+                }
+            }
+            // Look in all the Consumers for any duplicate produced items
+            foreach (String item in lbProducer.Items) {
+                if (lbConsumer01.Items.Contains(item) && lbConsumer02.Items.Contains(item))
+                {
+                    txtResults.Text += Environment.NewLine + item + " DUPLICATED in Consumers";
+                }
             }
         }
         private void killThreads()
@@ -94,6 +107,11 @@ namespace ProducerConsumerDemo
             try { producer.Abort(); } catch (Exception ex) { };
             try { consumer01.Abort(); } catch (Exception ex) { };
             try { consumer02.Abort(); } catch (Exception ex) { };
+        }
+
+        private void frmProducerConsumerDemo_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
