@@ -20,11 +20,11 @@ namespace ProducerConsumerDemo.Code
     {
         // https://docs.microsoft.com/en-us/dotnet/standard/collections/thread-safe/
         SynchronizedCollection<String> bagOfStuff;
-        TextBox txtProducer;
-        public Producer(SynchronizedCollection<String> bagOfStuff, TextBox txtProducer) : base()
+        ListBox lbProducer;
+        public Producer(SynchronizedCollection<String> bagOfStuff, ListBox lbProducer) : base()
         {
             this.bagOfStuff = bagOfStuff;
-            this.txtProducer = txtProducer;
+            this.lbProducer = lbProducer;
         }
 
         public override void RunThread()
@@ -37,12 +37,11 @@ namespace ProducerConsumerDemo.Code
                 String tmp = Convert.ToString(r);
                 Console.WriteLine("Producer: adding " + tmp );
                 bagOfStuff.Add(tmp);
-                if (txtProducer != null)
+                if (lbProducer != null)
                 {
-                    txtProducer.Invoke(new MethodInvoker(delegate { txtProducer.Text = tmp + Environment.NewLine + txtProducer.Text; }));
+                    lbProducer.Invoke(new MethodInvoker(delegate { lbProducer.Items.Insert(0, tmp); }));
                     //txtProducer.Text = myWidget.ElementAt<String>(0) + Environment.NewLine + txtProducer.Text;
                 }
-
             }
         }
     }
